@@ -1,0 +1,196 @@
+/* Flash Graveyard — spooky but readable. System fonts only, CSS + emoji art. */
+
+:root {
+  --bg: #0d0a1a;
+  --bg-2: #14102a;
+  --ink: #e8e6ff;
+  --ink-dim: #b9b4d6;
+  --green: #7dff5e;
+  --green-dim: #5ec93a;
+  --purple: #b388ff;
+  --amber: #ffd54f;
+  --card: #1d1840;
+  --line: #332a63;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand { font-weight: 800; font-size: 1.15rem; letter-spacing: 0.02em; }
+.topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+.souls { font-size: 0.95rem; }
+.souls strong { color: var(--green); }
+
+main { max-width: 920px; margin: 0 auto; padding: 1rem; }
+
+h1 { font-size: 2.2rem; margin: 0.5rem 0; text-align: center; color: var(--green); text-shadow: 0 0 18px rgba(125, 255, 94, 0.35); }
+h2 { margin: 0; font-size: 1.3rem; }
+.tagline { text-align: center; color: var(--ink-dim); max-width: 560px; margin: 0 auto 1.5rem; }
+.footnote { text-align: center; color: var(--ink-dim); font-size: 0.85rem; }
+
+.ghosts { text-align: center; font-size: 2rem; letter-spacing: 0.6rem; }
+.ghosts span { display: inline-block; animation: float 3s ease-in-out infinite; }
+.ghosts span:nth-child(2) { animation-delay: 0.6s; }
+.ghosts span:nth-child(3) { animation-delay: 1.2s; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ---- Tombstones (hub) ---- */
+.tombstones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.tombstone {
+  background: linear-gradient(180deg, #2a2450, var(--card));
+  border: 1px solid var(--line);
+  border-radius: 120px 120px 12px 12px / 90px 90px 12px 12px;
+  padding: 1.25rem 1rem 1rem;
+  text-align: center;
+}
+.tombstone-icon { font-size: 2.4rem; }
+.tombstone h2 { margin: 0.4rem 0; color: var(--amber); }
+.tombstone p { margin: 0.35rem 0; color: var(--ink-dim); font-size: 0.95rem; }
+.tombstone-hint { font-size: 0.82rem !important; }
+.tombstone-best { color: var(--ink) !important; }
+.tombstone-best strong { color: var(--green); }
+
+/* ---- Buttons ---- */
+.btn {
+  background: var(--green-dim);
+  color: #0d0a1a;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.6rem;
+}
+.btn:hover { background: var(--green); }
+.btn-small { font-size: 0.85rem; padding: 0.4rem 0.7rem; margin-top: 0; }
+
+/* ---- Game screens ---- */
+.game-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.hud { text-align: center; font-size: 1.05rem; }
+.hud strong { color: var(--green); }
+.controls { text-align: center; color: var(--ink-dim); font-size: 0.9rem; }
+
+canvas {
+  display: block;
+  margin: 0 auto;
+  width: min(100%, 420px);
+  height: auto;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-2);
+  touch-action: none;
+}
+#screen-breakout canvas { width: min(100%, 420px); }
+
+.overlay {
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 420px;
+}
+.overlay p { font-size: 1.1rem; margin: 0.25rem 0 0.5rem; }
+.overlay .btn { margin: 0.3rem; }
+.hidden { display: none; }
+
+.setup { text-align: center; margin: 1rem 0; }
+.setup .btn { margin: 0.3rem; }
+
+/* ---- Memory grid ---- */
+.memory-grid {
+  --cols: 4;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: 0.6rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.card {
+  aspect-ratio: 3 / 4;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  perspective: 600px;
+}
+.card-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+}
+.card.flipped .card-inner { transform: rotateY(180deg); }
+.card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.card-front { background: linear-gradient(180deg, #3a3168, #241d4d); }
+.card-back {
+  background: var(--card);
+  transform: rotateY(180deg);
+  border-color: var(--green-dim);
+}
+.card.matched .card-back { background: #1e3d16; border-color: var(--green); }
+.card:disabled { cursor: default; }
+
+footer { text-align: center; color: var(--ink-dim); font-size: 0.82rem; padding: 1.5rem 1rem 2rem; }
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.7rem; }
+  .brand { font-size: 1rem; }
+  .souls { font-size: 0.85rem; }
+  .memory-grid { gap: 0.4rem; }
+  .card-face { font-size: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ghosts span { animation: none; }
+  .card-inner { transition: none; }
+}

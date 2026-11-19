@@ -1,0 +1,1 @@
+{"description":"Flash Graveyard — dead Adobe Flash web games resurrected in HTML5. Kiroween 2026 entry (Resurrection).","license":"MIT","name":"flash-graveyard","private":true,"scripts":{"serve":"python3 -m http.server 8080","test":"node --test tests/*.test.js"},"type":"module","version":"0.1.0"}

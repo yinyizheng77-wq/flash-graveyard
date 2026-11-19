@@ -1,0 +1,7 @@
+# Flash Graveyard .gitignore
+# NOTE: .kiro/ is intentionally NOT ignored — Kiroween rules require the
+# /.kiro directory at the repo root, and ignoring it can disqualify the entry.
+
+node_modules/
+.DS_Store
+*.log

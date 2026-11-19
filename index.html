@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flash Graveyard — Dead Flash games, resurrected</title>
+<meta name="description" content="Flash Graveyard resurrects dead Adobe Flash web games in HTML5: Grave Snake, Crypt Breaker and Haunted Memory, in one spooky hub with shared soul points.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">🪦 Flash Graveyard</div>
+  <div class="topbar-right">
+    <span class="souls" title="Souls earned across all games">👻 Souls: <strong id="soul-total">0</strong></span>
+    <button type="button" id="mute-btn" class="btn btn-small">🔊 Sound on</button>
+  </div>
+</header>
+
+<main>
+  <!-- ============ HUB ============ -->
+  <section id="screen-hub" class="screen active">
+    <div class="ghosts" aria-hidden="true"><span>👻</span><span>🎃</span><span>🦇</span></div>
+    <h1>Flash Graveyard</h1>
+    <p class="tagline">Adobe Flash died in 2020. Its games didn't have to.
+      Three Flash-era classics, rebuilt in HTML5 — buried here, playable
+      forever. Earn souls in any game; they all count.</p>
+    <div id="tombstones" class="tombstones"></div>
+    <p class="footnote">No installs · No accounts · No ads · Your scores stay on your device.</p>
+  </section>
+
+  <!-- ============ SNAKE ============ -->
+  <section id="screen-snake" class="screen">
+    <div class="game-head">
+      <button type="button" class="btn btn-small" data-back="snake">← Graveyard</button>
+      <h2>🐍 Grave Snake</h2>
+      <button type="button" class="btn btn-small" data-pause="snake">⏸ Pause</button>
+    </div>
+    <p class="hud">Score <strong data-score>0</strong> · Level <strong data-level>1</strong></p>
+    <canvas width="400" height="400" aria-label="Grave Snake game board"></canvas>
+    <p class="controls">Arrows / WASD / swipe to steer · Space pauses · Eat souls, don't bite yourself.</p>
+    <div class="overlay hidden" data-overlay>
+      <p data-overlay-text></p>
+      <button type="button" class="btn" data-again="snake">↻ Play again</button>
+      <button type="button" class="btn" data-back="snake">← Graveyard</button>
+    </div>
+  </section>
+
+  <!-- ============ BREAKOUT ============ -->
+  <section id="screen-breakout" class="screen">
+    <div class="game-head">
+      <button type="button" class="btn btn-small" data-back="breakout">← Graveyard</button>
+      <h2>🧱 Crypt Breaker</h2>
+      <span></span>
+    </div>
+    <p class="hud">Score <strong data-score>0</strong> · Lives <strong data-lives>💀💀💀</strong> · Level <strong data-level>1</strong></p>
+    <canvas width="480" height="560" aria-label="Crypt Breaker game board"></canvas>
+    <p class="controls">Move the mouse or drag to slide the paddle · Click / Space launches the ball.</p>
+    <div class="overlay hidden" data-overlay>
+      <p data-overlay-text></p>
+      <button type="button" class="btn" data-again="breakout">↻ Play again</button>
+      <button type="button" class="btn" data-back="breakout">← Graveyard</button>
+    </div>
+  </section>
+
+  <!-- ============ MEMORY ============ -->
+  <section id="screen-memory" class="screen">
+    <div class="game-head">
+      <button type="button" class="btn btn-small" data-back="memory">← Graveyard</button>
+      <h2>🪦 Haunted Memory</h2>
+      <span></span>
+    </div>
+    <p class="hud">Moves <strong data-moves>0</strong> · Time <strong data-time>0:00</strong></p>
+    <div class="setup" data-setup>
+      <p>Pick your haunting:</p>
+      <button type="button" class="btn" data-difficulty="8">🌙 Easy — 8 pairs</button>
+      <button type="button" class="btn" data-difficulty="12">💀 Hard — 12 pairs</button>
+    </div>
+    <div class="memory-grid" data-grid></div>
+    <p class="controls">Flip two tombstones to find a matching pair. Fewer moves = higher score.</p>
+    <div class="overlay hidden" data-overlay>
+      <p data-overlay-text></p>
+      <button type="button" class="btn" data-again="memory">↻ Play again</button>
+      <button type="button" class="btn" data-back="memory">← Graveyard</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Flash Graveyard — a Kiroween 2026 entry (Resurrection). Built with Kiro.
+     All art is CSS + emoji; all sound is procedural WebAudio. No Flash was harmed.</p>
+</footer>
+
+<script type="module" src="src/hub.js"></script>
+</body>
+</html>

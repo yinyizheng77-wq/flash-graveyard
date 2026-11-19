@@ -1,0 +1,1 @@
+{"hooks":[{"action":{"prompt":"Before ending this session: run `npm test` and confirm all tests pass, then check that every box in the active spec's tasks.md matches reality (checked only if implemented and tested). Report any failing test or unchecked task honestly instead of stopping silently.","type":"agent"},"name":"Verify before stopping","trigger":"Stop"}],"version":"v1"}
